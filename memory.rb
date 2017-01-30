@@ -27,18 +27,32 @@ class MemoryGame
   end
 
   def get_player_input
-    pos = nil
+    pos = player.get_input
 
-    until pos && valid_pos?(pos)
-      pos = player.get_input
+    unless pos.is_a?(Array)
+      raise ArgumentError.new "Please input an array"
     end
+    unless pos.count == 2
+      raise ArgumentError.new "Please make input 2 chars long"
+    end
+    unless pos.all? { |x| x.between?(0, board.size - 1) }
+      raise ArgumentError.new "Position is outside range of board"
+    end
+
+    rescue ArgumentError => e
+      puts "Could not evaluate argument"
+      puts "Error was : #{e.message}"
+    retry
+    # until pos && valid_pos?(pos)
+    #   pos = player.get_input
+    # end
 
     pos
   end
 
   def make_guess(pos)
     revealed_value = board.reveal(pos)
-    player.receive_revealed_card(pos, revealed_value) 
+    player.receive_revealed_card(pos, revealed_value)
     board.render
 
     compare_guess(pos)
