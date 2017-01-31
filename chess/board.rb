@@ -55,21 +55,28 @@ class Board
   # end
 
   def move_piece(start_position, end_position)
+    if @board[start_x][start_y].is_a?(NullPiece)
+       raise ArgumentError.new "No piece at position"
+    end
+
+    unless end_position.each do { |x| (0, 7).include?(x) }
+      raise ArgumentError.new "End position not on board"
+    end
+
+    rescue ArgumentError => e
+      puts "Invalid move"
+      puts "Error was: #{e}"
+    end
+
     #update piece position
     start_x = start_position[0]
     start_y = start_position[1]
 
     end_x = end_position[0]
     end_y = end_position[1]
+
     @board[end_x][end_y] = @board[start_x][start_y]
     @board[start_x][start_y] = NullPiece.new
-    #update grid
-
-    #raise error if
-      #no piece is at start position
-
-
-      #cannot go to end position
   end
 end
 
