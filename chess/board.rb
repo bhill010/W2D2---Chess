@@ -2,7 +2,7 @@ require_relative 'piece'
 require_relative 'null_piece'
 
 class Board
-  attr_reader :board
+  attr_accessor :board
 
   def initialize
     @board = Array.new(8) {Array.new(8){ NullPiece.new }}
@@ -30,20 +30,20 @@ class Board
     @board[x][y]
   end
 
-  def display
-    string = "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n"
-    @board.each_with_index do |row, i|
-      row_string = "#{i} |"
-      row.each_with_index do |el, col|
-        row_string << " #{ @board[i][col].value } |"
-      end
-        row_string << "\n"
-        string << row_string
-        row_string = ""
-    end
-
-    puts string
-  end
+  # def display
+  #   string = "  | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 |\n"
+  #   @board.each_with_index do |row, i|
+  #     row_string = "#{i} |"
+  #     row.each_with_index do |el, col|
+  #       row_string << " #{ @board[i][col].value } |"
+  #     end
+  #       row_string << "\n"
+  #       string << row_string
+  #       row_string = ""
+  #   end
+  #
+  #   puts string
+  # end
 
   # def render
   #   puts "  #{(0..7).to_a.join(" ")}"
