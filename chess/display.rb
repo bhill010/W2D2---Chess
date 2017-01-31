@@ -8,46 +8,33 @@ class Display
     @cursor = Cursor.new([0,0], board)
   end
 
-  def header_render
-    header = ((0..7).to_a).map.with_index do |el, idx|
-      if idx == 0
-        "  " + el.to_s
-      else
-      el.to_s
-      end
-    end
-    print header
-    print "\n"
-  end
-
   def render
-    header_render
+    display_string = "    0  1  2  3  4  5  6  7 " + "\n"
 
-    render_arr = []
     @board.board.each_with_index do |row, i|
       # row_header = "#{i} |"
-      row_arr = []
+      row_str = "#{i}  |"
       row.each_with_index do |el, col|
-        row_arr << @board[[i,col]].value
-
+        if [i,col] == @cursor.cursor_pos
+          row_str << @board[[i,col]].value.colorize( :background => :red) + " |"
+        else
+          row_str << @board[[i,col]].value + " |"
+        end
       end
-        render_arr << row_arr
+        display_string << row_str + "\n"
+        row_str = ""
     end
-    render_arr.each_with_index do |row, idx|
-      print " " + idx.to_s
-      p row
-    end
-    # @board.board[@cursor.cursor_pos].colorize(:background => :red)
 
-    # p @cursor.cursor_pos
+    puts display_string
   end
 
-  # def render_loop
-  #   while true
-  #     render
-  #     @cursor.get_input
-  #   end
-  # end
+  def render_loop
+    while true
+      system("clear")
+      render
+      @cursor.get_input
+    end
+  end
 
 end
 
@@ -55,5 +42,5 @@ if __FILE__ == $PROGRAM_NAME
   b = Board.new
   d = Display.new(b)
   d.render
-  # d.render_loop
+  d.render_loop
 end

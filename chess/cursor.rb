@@ -93,11 +93,11 @@ class Cursor
   end
 
   def update_pos(diff)
-    @cursor_pos[0] += diff[0]
-    @cursor_pos[1] += diff[1]
-
-    # @cursor_pos.map.with_index do |coordinate, i|
-    #   coordinate += diff[i]
-    # end
+      new_x = @cursor_pos[0] + diff[0]
+      new_y = @cursor_pos[1] + diff[1]
+      if (new_x.between?(0, 7)) && (new_y.between?(0,7))
+        @cursor_pos[0] = new_x
+        @cursor_pos[1] = new_y
+      end
   end
 end
