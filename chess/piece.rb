@@ -5,4 +5,8 @@ class Piece
     @value = value
     # puts "#{@value}"
   end
+
+  def moves
+    possible_moves = []
+  end
 end

@@ -5,7 +5,7 @@ class Board
   attr_accessor :board
 
   def initialize
-    @board = Array.new(8) {Array.new(8){ NullPiece.new }}
+    @board = Array.new(8) {Array.new(8){ NullPiece.instance }}
     setup
   end
 
@@ -76,7 +76,7 @@ class Board
     # end
 
     @board[end_x][end_y] = @board[start_x][start_y]
-    @board[start_x][start_y] = NullPiece.new
+    @board[start_x][start_y] = NullPiece.instance
   end
 end
 

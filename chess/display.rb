@@ -15,10 +15,19 @@ class Display
       # row_header = "#{i} |"
       row_str = "#{i}  |"
       row.each_with_index do |el, col|
-        if [i,col] == @cursor.cursor_pos
-          row_str << @board[[i,col]].value.colorize( :background => :red) + " |"
-        else
-          row_str << @board[[i,col]].value + " |"
+        # if [i,col] == @cursor.cursor_pos
+        #   row_str << @board[[i,col]].value.colorize( :background => :red) + " |"
+        # else
+          #row_str << @board[[i,col]].value + " |"
+          if i.even? && col.even?
+            row_str << (" " + @board[[i,col]].value + " ").colorize( :background => :gray)
+          elsif i.even? && col.odd?
+            row_str << (" " + @board[[i,col]].value + " ").colorize( :background => :white)
+          elsif i.odd? && col.even?
+            row_str << (" " +@board[[i,col]].value + " ").colorize( :background => :white)
+          else
+            row_str << (" " + @board[[i,col]].value + " ").colorize( :background => :gray)
+          # end
         end
       end
         display_string << row_str + "\n"
