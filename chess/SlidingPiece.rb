@@ -11,8 +11,23 @@ module SlidingPiece
     deltas
   end
 
-  VERTICAL_DELTAS = move_dirs.select{|el| el[0] == 0}
-  HORIZONTAL_DELTAS = move_dirs.select{|el| el[1] == 0}
-  DIAGONAL_DELTAS = move_dirs.select{|el| el[0] == el[1]}
+  #VERTICAL_DELTAS = move_dirs.select{|el| el[0] == 0}
+  #HORIZONTAL_DELTAS = move_dirs.select{|el| el[1] == 0}
+  #DIAGONAL_DELTAS = move_dirs.select{|el| el[0] == el[1]}
+
+  VERTICAL_DELTAS = [
+    [0, 1],
+    [0, -1]
+  ]
+  HORIZONTAL_DELTAS = [
+    [1, 0],
+    [-1, 0]
+  ]
+  DIAGONAL_DELTAS = [
+    [1, 1],
+    [-1, 1],
+    [-1, -1],
+    [1, -1]
+  ]
 
 end

@@ -1,6 +1,7 @@
 require 'colorize'
 require_relative 'cursor'
 require_relative 'board'
+require_relative 'bishop'
 
 class Display
   def initialize(board)

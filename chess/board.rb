@@ -1,5 +1,10 @@
 require_relative 'piece'
 require_relative 'null_piece'
+require_relative 'bishop'
+require_relative 'rook'
+require_relative 'knight'
+require_relative 'queen'
+require_relative 'king'
 
 class Board
   attr_accessor :board
@@ -14,7 +19,44 @@ class Board
     @board.each_with_index do |row, i|
       if piece_rows.include?(i)
         row.each_with_index do |el, col|
-          @board[i][col] = Piece.new
+          t_position = [i, col]
+          puts "#{t_position}"
+          case [i, col]
+          when [0, 0]
+            @board[i][col] = Rook.new([0, 0])
+          when [0, 7]
+            @board[i][col] = Rook.new([0, 7])
+          when [7, 0]
+            @board[i][col] = Rook.new([7, 0])
+          when [7, 7]
+            @board[i][col] = Rook.new([7, 7])
+          when [0, 1]
+            @board[i][col] = Knight.new([0, 1])
+          when [0, 6]
+            @board[i][col] = Knight.new([0, 6])
+          when [7, 1]
+            @board[i][col] = Knight.new([7, 1])
+          when [7, 6]
+            @board[i][col] = Knight.new([7, 6])
+          when [0, 2]
+            @board[i][col] = Bishop.new([0, 2])
+          when [0, 5]
+            @board[i][col] = Bishop.new([0, 5])
+          when [7, 2]
+            @board[i][col] = Bishop.new([7, 2])
+          when [7, 5]
+            @board[i][col] = Bishop.new([7, 5])
+          when [0, 3]
+            @board[i][col] = Queen.new([0, 3])
+          when [7, 3]
+            @board[i][col] = Queen.new([7, 3])
+          when [0, 4]
+            @board[i][col] = King.new([0, 4])
+          when [7, 4]
+            @board[i][col] = King.new([7, 4])
+          else
+            @board[i][col] = Piece.new
+          end
         end
       end
     end
